@@ -1,5 +1,5 @@
 import {Link} from 'react-router-dom'
-import {useEffect, useMemo, useState} from 'react'
+import {useMemo, useState} from 'react'
 
 import {CASDOOR_SDK, getUserinfo, getUsers, goToLink, isLoggedIn, showMessage} from '@/components/setting'
 import type {JwtPayload, Account} from '@/types/casdoor'
