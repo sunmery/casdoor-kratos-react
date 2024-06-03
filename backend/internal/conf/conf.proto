@@ -1,0 +1,58 @@
+syntax = "proto3";
+package kratos.api;
+
+option go_package = "backend/internal/conf;conf";
+
+import "google/protobuf/duration.proto";
+import "validate/validate.proto";
+
+message Bootstrap {
+  Server server = 1;
+  Data data = 2;
+}
+
+message Server {
+  message HTTP {
+    string network = 1;
+    string addr = 2;
+    google.protobuf.Duration timeout = 3;
+  }
+  message GRPC {
+    string network = 1;
+    string addr = 2;
+    google.protobuf.Duration timeout = 3;
+  }
+  HTTP http = 1;
+  GRPC grpc = 2;
+}
+
+message Data {
+  message Database {
+    string driver = 1;
+    string source = 2;
+  }
+  message Redis {
+    string network = 1;
+    string addr = 2;
+    google.protobuf.Duration read_timeout = 3;
+    google.protobuf.Duration write_timeout = 4;
+  }
+  Database database = 1;
+  Redis redis = 2;
+}
+
+message Casdoor {
+  message Casdoor {
+    message Server {
+      string endpoint = 1;
+      string client_id = 2 [json_name = "client_id"];
+      string client_secret = 3 [json_name = "client_secret"];
+      string organization = 4;
+      string application = 5;
+      string frontend_url = 6 [json_name = "frontend_url"];
+    }
+    string certificate = 1;
+    Server server = 2;
+  }
+  Casdoor casdoor = 1;
+}
