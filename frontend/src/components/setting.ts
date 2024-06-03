@@ -29,23 +29,25 @@ export const getSigninUrl = () => {
 };
 
 // 获取用户信息
-export const getUserinfo = () => {
-  return fetch(`${serverUrl}/api/userinfo`, {
-    method: "GET",
+export const getUserinfo = async () => {
+  const res = await fetch(`${serverUrl}/api/userinfo`, {
+    method: 'GET',
     headers: {
-      Authorization: `Bearer ${localStorage.getItem("token")}`,
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
     },
-  }).then((res) => res.json());
+  })
+  return await res.json()
 };
 
 // 获取用户列表
-export const getUsers = () => {
-  return fetch(`${CASDOOR_CONF.serverUrl}/api/get-users?owner=${CASDOOR_CONF.organizationName}`, {
-    method: "GET",
+export const getUsers = async () => {
+  const res = await fetch(`${CASDOOR_CONF.serverUrl}/api/get-users?owner=${CASDOOR_CONF.organizationName}`, {
+    method: 'GET',
     headers: {
-      Authorization: `Bearer ${localStorage.getItem("token")}`,
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
     },
-  }).then((res) => res.json());
+  })
+  return await res.json()
 };
 
 // 登出
