@@ -1,8 +1,8 @@
 import SDK from "casdoor-js-sdk";
 import {CASDOOR_CONF} from '@/conf/casdoor.ts'
 
-// 服务端的URL
-export const serverUrl = "http://localhost:8080";
+// 服务端的URL, 非casdoor的地址
+export const serverUrl = "http://localhost:30001";
 
 // 读取配置
 export const CASDOOR_SDK = new SDK(CASDOOR_CONF);
@@ -30,7 +30,8 @@ export const getSigninUrl = () => {
 
 // 获取用户信息
 export const getUserinfo = async () => {
-  const res = await fetch(`${serverUrl}/api/userinfo`, {
+  const res = await fetch(`${serverUrl}/v1/user/profile`, {
+  // const res = await fetch(`${serverUrl}/api/userinfo`, {
     method: 'GET',
     headers: {
       Authorization: `Bearer ${localStorage.getItem('token')}`,

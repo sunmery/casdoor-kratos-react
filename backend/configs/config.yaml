@@ -1,54 +1,59 @@
 server:
   http:
-    addr: 0.0.0.0:8080
+    addr: 0.0.0.0:30001
     timeout: 1s
   grpc:
-    addr: 0.0.0.0:9000
+    addr: 0.0.0.0:30002
     timeout: 1s
 data:
   database:
-    driver: mysql
-    source: root:root@tcp(127.0.0.1:3306)/test?parseTime=True&loc=Local
+    source: postgresql://postgres:postgres@localhost:5432/tiktok?sslmode=disable&search_path=users
   redis:
     addr: 127.0.0.1:6379
-    read_timeout: 0.2s
-    write_timeout: 0.2s
+    read_timeout: 4.2s
+    write_timeout: 4.2s
+    dial_timeout: 4s
 
 casdoor:
   certificate: |
     -----BEGIN CERTIFICATE-----
-    MIIE+TCCAuGgAwIBAgIDAeJAMA0GCSqGSIb3DQEBCwUAMDYxHTAbBgNVBAoTFENh
-    c2Rvb3IgT3JnYW5pemF0aW9uMRUwEwYDVQQDEwxDYXNkb29yIENlcnQwHhcNMjEx
-    MDE1MDgxMTUyWhcNNDExMDE1MDgxMTUyWjA2MR0wGwYDVQQKExRDYXNkb29yIE9y
-    Z2FuaXphdGlvbjEVMBMGA1UEAxMMQ2FzZG9vciBDZXJ0MIICIjANBgkqhkiG9w0B
-    AQEFAAOCAg8AMIICCgKCAgEAsInpb5E1/ym0f1RfSDSSE8IR7y+lw+RJjI74e5ej
-    rq4b8zMYk7HeHCyZr/hmNEwEVXnhXu1P0mBeQ5ypp/QGo8vgEmjAETNmzkI1NjOQ
-    CjCYwUrasO/f/MnI1C0j13vx6mV1kHZjSrKsMhYY1vaxTEP3+VB8Hjg3MHFWrb07
-    uvFMCJe5W8+0rKErZCKTR8+9VB3janeBz//zQePFVh79bFZate/hLirPK0Go9P1g
-    OvwIoC1A3sarHTP4Qm/LQRt0rHqZFybdySpyWAQvhNaDFE7mTstRSBb/wUjNCUBD
-    PTSLVjC04WllSf6Nkfx0Z7KvmbPstSj+btvcqsvRAGtvdsB9h62Kptjs1Yn7GAuo
-    I3qt/4zoKbiURYxkQJXIvwCQsEftUuk5ew5zuPSlDRLoLByQTLbx0JqLAFNfW3g/
-    pzSDjgd/60d6HTmvbZni4SmjdyFhXCDb1Kn7N+xTojnfaNkwep2REV+RMc0fx4Gu
-    hRsnLsmkmUDeyIZ9aBL9oj11YEQfM2JZEq+RVtUx+wB4y8K/tD1bcY+IfnG5rBpw
-    IDpS262boq4SRSvb3Z7bB0w4ZxvOfJ/1VLoRftjPbLIf0bhfr/AeZMHpIKOXvfz4
-    yE+hqzi68wdF0VR9xYc/RbSAf7323OsjYnjjEgInUtRohnRgCpjIk/Mt2Kt84Kb0
-    wn8CAwEAAaMQMA4wDAYDVR0TAQH/BAIwADANBgkqhkiG9w0BAQsFAAOCAgEAn2lf
-    DKkLX+F1vKRO/5gJ+Plr8P5NKuQkmwH97b8CS2gS1phDyNgIc4/LSdzuf4Awe6ve
-    C06lVdWSIis8UPUPdjmT2uMPSNjwLxG3QsrimMURNwFlLTfRem/heJe0Zgur9J1M
-    8haawdSdJjH2RgmFoDeE2r8NVRfhbR8KnCO1ddTJKuS1N0/irHz21W4jt4rxzCvl
-    2nR42Fybap3O/g2JXMhNNROwZmNjgpsF7XVENCSuFO1jTywLaqjuXCg54IL7XVLG
-    omKNNNcc8h1FCeKj/nnbGMhodnFWKDTsJcbNmcOPNHo6ixzqMy/Hqc+mWYv7maAG
-    Jtevs3qgMZ8F9Qzr3HpUc6R3ZYYWDY/xxPisuKftOPZgtH979XC4mdf0WPnOBLqL
-    2DJ1zaBmjiGJolvb7XNVKcUfDXYw85ZTZQ5b9clI4e+6bmyWqQItlwt+Ati/uFEV
-    XzCj70B4lALX6xau1kLEpV9O1GERizYRz5P9NJNA7KoO5AVMp9w0DQTkt+LbXnZE
-    HHnWKy8xHQKZF9sR7YBPGLs/Ac6tviv5Ua15OgJ/8dLRZ/veyFfGo2yZsI+hKVU5
-    nCCJHBcAyFnm1hdvdwEdH33jDBjNB6ciotJZrf/3VYaIWSalADosHAgMWfXuWP+h
-    8XKXmzlxuHbTMQYtZPDgspS5aK+S4Q9wb8RRAYo=
+    MIIE2TCCAsGgAwIBAgIDAeJAMA0GCSqGSIb3DQEBCwUAMCYxDjAMBgNVBAoTBWFk
+    bWluMRQwEgYDVQQDDAtjZXJ0X2ljMHdkbzAeFw0yNDExMTYwNDA4MTNaFw00NDEx
+    MTYwNDA4MTNaMCYxDjAMBgNVBAoTBWFkbWluMRQwEgYDVQQDDAtjZXJ0X2ljMHdk
+    bzCCAiIwDQYJKoZIhvcNAQEBBQADggIPADCCAgoCggIBAMMxACjaPRHdezxEbaeu
+    9t2egoUtzpVVHjXsMxc1l64QectaAqC4uosM2saeTJtV2ABB8zEwbzn8WdlzW8YT
+    7c6KqulqMro0z1x+tACGzrTkADLCgi86xQtnWwocSEIEnmesKVaS3qv9fcBXuBZv
+    dbALLxNuEoC7/RvguGs/3A2zbG/41Q8aGk8UXFbP6GASO/aAaopxwyyxeap3kTsN
+    y1blc7GroLq11nFyV2cLt88Atii20eVVyFrrtEGDjvjHgLM8wTGQIJc6Ysfq4qEJ
+    rrtkUjGgMsPJ4CRspO0VXgD7yljRYvjr5VWUVa2h6GlX+j8N47D0K9f7KKh3Fpbx
+    oWh7X8o2Jm0AYvkq/Bj/SgEA9TVh7Olvxzf9moqBGf5Pr4ARYuqQkFBAabnkxCGe
+    kwZk2DKAB0f9iN1KLfEtZAp5kWkC32XTzYwAlIZwNxJIQU1YctPVqB2uAtI/fTPF
+    z83D4CRjMIrkTARtPceky35cnnGKp4imIjrQsdXc1klWEtvb5fmWjd/C2by6FigA
+    5tbDpGxxzYoe+9srZCD2V50Ri3mHXMZ2t4pEyo/EjaOqHDs/71m/7UlhHLjWudw+
+    QQna7a3VL843IBnCoZR1i8ruCHBh61043fI9Bj5Htx1/dHAmc9TsMHIITMgXYg7i
+    QwV2IDJsKSRVqjFr5rzlD9PHAgMBAAGjEDAOMAwGA1UdEwEB/wQCMAAwDQYJKoZI
+    hvcNAQELBQADggIBALvjLqK5GS+pnWw1hKOmj8Pis4F5UOlxEgqH8MXQkPpDRVe4
+    k7dtMolfT6LQCIntQp52nw7L0drItyyfRjnRe4FAaTzDG1rA6wLerG9idulVOwJE
+    5fwCaReqasMiZJGMcaLNkcs//byspsAQv6NypFLw/lJ/KfLelxhSt71il1eCDRPE
+    TXRvnTc3Ip0c8Q/Wt4pIvzoeTuKCNXskMJTuug5YbJO8Rc2Kixiid9bbl/UgeMDC
+    mhBwYqNk8b5D10R1fy+VFxSRMSsBcx5Lj2XEuc+TJNuZ3SkDJV4wmVLnIM87X1Sp
+    Q0te6GAq1ECQAwE35pi5aIPWfQdwxEp9SJpsyzRhr5HKUkJjXLbUtP0wPDneBAU7
+    wG9/FbWIUDaJbPhBl3srX8tu4wm2AFMqpAwdTD4HNc3vfpvkNGjzizG7af7E9Q+w
+    luolpu9tXoc2uN9aGFP2Mo6k3wlJVAma2UEcGgBx0yIjG3vyakAJGQInx+9BEaWe
+    St5v377XgqYWScCdUo1PXsQAfJ8/r7oQ8SrWk5BBOjXVwdEDNoJkLKhzqsQPB/u/
+    F/Blh8zz//nenuAt4dXxoS1/NM0+0C6yMBnO0g09czkOirTojuDrbKhqBA0w08Fw
+    ZA0OD+7IUBDyXMGhDYS1hil31rLTnNWa+si2xvO3DGEcL4Iw5li+/0J29lSg
     -----END CERTIFICATE-----
   server:
-    endpoint: "https://door.casdoor.com"
-    client_id: "294b09fbc17f95daf2fe"
-    client_secret: "dd8982f7046ccba1bbd7851d5c1ece4e52bf039d"
-    organization: "casbin"
-    application: "app-vue-python-example"
+    # casdoor的首页地址
+    endpoint: "http://localhost:8000"
+    # 该项目所属的客户端ID, 在casdoor的 身份认证 -> 应用 复制
+    client_id: "58ae47eed5903ca1c3ce"
+    # 该项目所属的客户端密钥, 在casdoor的 身份认证 -> 应用 复制
+    client_secret: "d092bd2b51a075fe7a790e01e8a2b1a8176a2d40"
+    # 该项目所属的组织, 在casdoor的 用户管理 -> 组织 创建
+    organization: "tiktok"
+    # 该项目所属的应用, 在casdoor的 身份认证 -> 应用 创建
+    application_name: "e-commence"
+    # 前端的地址
     frontend_url: "http://localhost:3000"

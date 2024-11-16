@@ -1,6 +1,8 @@
 syntax = "proto3";
 
 import "google/api/annotations.proto";
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/any.proto";
 
 package casdoor.v1;
 
@@ -25,6 +27,7 @@ message SigninRequest {
   string code = 1 [json_name = "code"];
   string state = 2 [json_name = "state"];
 }
+
 message SigninReply {
   string state = 1 [json_name = "state"];
   string data = 2 [json_name = "data"];
@@ -33,9 +36,6 @@ message SigninReply {
 message UserinfoRequest {
   string authorization = 1;
 }
-
-import "google/protobuf/timestamp.proto";
-import "google/protobuf/any.proto";
 
 message Data {
 

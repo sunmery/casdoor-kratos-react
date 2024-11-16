@@ -4,7 +4,6 @@ package kratos.api;
 option go_package = "backend/internal/conf;conf";
 
 import "google/protobuf/duration.proto";
-import "validate/validate.proto";
 
 message Bootstrap {
   Server server = 1;
@@ -48,7 +47,7 @@ message Casdoor {
       string client_id = 2 [json_name = "client_id"];
       string client_secret = 3 [json_name = "client_secret"];
       string organization = 4;
-      string application = 5;
+      string application_name = 5 [json_name = "application_name"];
       string frontend_url = 6 [json_name = "frontend_url"];
     }
     string certificate = 1;

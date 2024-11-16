@@ -38,7 +38,7 @@ func NewCasdoor(cc *conf.Casdoor) *casdoorsdk.Client {
 		cc.Casdoor.Server.ClientSecret,
 		cc.Casdoor.Certificate,
 		cc.Casdoor.Server.Organization,
-		cc.Casdoor.Server.Application,
+		cc.Casdoor.Server.ApplicationName,
 	)
 
 	return client

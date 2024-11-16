@@ -28,9 +28,7 @@ var (
 	id, _ = os.Hostname()
 )
 
-
 func init() {
-
 	flag.StringVar(&flagconf, "conf", "../../configs", "config path, eg: -conf config.yaml")
 }
 
